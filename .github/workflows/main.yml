@@ -23,13 +23,10 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.1"
+        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.1"
 
       - name: Build APK
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
-        working-directory: .
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
